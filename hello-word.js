@@ -1,7 +1,7 @@
 
 
 //exercice1
-// console.log("HELLO WORLD")
+console.log("HELLO WORLD")
 
 
 //exercice2
@@ -9,41 +9,41 @@
 //conseils: l'objet process.argv un tableau contenant la ligne de commande complete
 //le premier element du tableau process.argv est tjrs node le second est toujours le chemain et le troisieme(i=2)
 //process.argv sont des strings donc convertir en mettant Number
-// let res=0
-// for(let i=2;i<process.argv.length;i++)
-// {
-// 	res+=Number(process.argv[i]);
+let res=0
+for(let i=2;i<process.argv.length;i++)
+{
+	res+=Number(process.argv[i]);
 	
-// }
-// console.log(res)
+}
+console.log(res)
 
 
 //exercice3 
 //ecrivez un prog qui utilise une opération synchrone sur le système de fichiers pour lire un fichier et afficher son nombre de fins de ligne 
-// const fs=require("fs")
-// //lire un fichier sync
-// let fichier = fs.readFileSync(process.argv[2]);
-// //convertir en string
-// var str=fichier.toString()
-// //compter les sauts de lignes
-// var ligne=str.split('\n')
-// //nombre de ligne
-// var nbr=ligne.length-1
-// console.log(nbr)
+const fs=require("fs")
+//lire un fichier sync
+let fichier = fs.readFileSync(process.argv[2]);
+//convertir en string
+var str=fichier.toString()
+//compter les sauts de lignes
+var ligne=str.split('\n')
+//nombre de ligne
+var nbr=ligne.length-1
+console.log(nbr)
 
 //exercice 4
 //ecrivez un prog qui utilise une opération asynchrone sur le sys de fichier pour lire un fichier et addicher qon nombre de fins de ligne 
 
-// var fs=require("fs")
-// let fichier=process.argv[2]
-// fs.readFile(fichier, function(err,data){
-// 	if(err)
-// 		console.log('can t read file')
+var fs=require("fs")
+let fichier=process.argv[2]
+fs.readFile(fichier, function(err,data){
+	if(err)
+		console.log('can t read file')
 
-// 	 else 
-// console.log(data.toString().split('\n').length-1)
+	 else 
+console.log(data.toString().split('\n').length-1)
 
-// })
+})
 
 
 //exercice 5
@@ -64,12 +64,16 @@ data.forEach(file=>{
 	})
 })
 
-// var fs = require('fs')
-// var path = require('path')
+//exercice 6
+//
+const application=require('./application')
 
-// fs.readdir(process.argv[2], function (err, list) {
-//   list.forEach(function (file) {
-//     if (path.extname(file) === '.' + process.argv[3])
-//       console.log(file)
-//   })
-// })
+ var  fichier=process.argv[2]
+var extension=process.argv[3]
+application.filterDir(fichier,extension,function(err,filtredlist)=>{
+if(err) return console.log(err)
+	filtredlist.forEach(file=>{
+ 		console.log(file)
+ 	})
+ })
+
